@@ -62,15 +62,18 @@ const Carousel = () => {
   return (
     <div
       id="home"
-      className="carousel-container w-full h-screen flex items-center justify-center transition-colors duration-700 mt-8"
+      className="carousel-container w-full h-screen flex items-center justify-center transition-colors duration-700 mt-16"
       style={{ backgroundColor: currentImage.bgColor }}
     >
-      <div className="carousel-content relative w-11/12 md:w-3/4 lg:w-2/3 h-4/5 overflow-hidden rounded-lg shadow-xl flex items-center justify-center p-4 md:p-6 lg:p-8">
+      <div className="carousel-content relative w-full h-full flex items-center justify-center ">
+        {/* Image Section */}
         <img
           src={currentImage.src}
           alt={`Slide ${currentIndex + 1}`}
-          className="w-auto h-auto max-w-full max-h-full object-contain"
+          className="w-auto h-full object-contain max-h-screen"
         />
+
+        {/* Navigation Buttons */}
         <button
           onClick={handlePrev}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-all duration-300 z-10"
@@ -83,13 +86,15 @@ const Carousel = () => {
         >
           &#8594;
         </button>
-        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1.5">
+
+        {/* Indicator Dots */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2">
           {images.map((_, index) => (
             <div
               key={index}
-              className={`w-2.5 h-2.5 rounded-full border border-gray-300 ${
+              className={`w-3 h-3 rounded-full ${
                 index === currentIndex
-                  ? "bg-gray-900 scale-125 shadow-sm"
+                  ? "bg-gray-900 scale-125"
                   : "bg-gray-400"
               } transition-all duration-300`}
             />

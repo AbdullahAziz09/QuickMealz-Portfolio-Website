@@ -8,37 +8,66 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 p-4 shadow-lg fixed top-0 w-full z-50">
+    <nav className="bg-gradient-to-r from-indigo-900 via-navy-800 to-sky-700 p-4 shadow-md fixed top-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
         
         {/* Logo */}
-        <a href="#home" className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-200 to-blue-200">
+        <a
+          href="#home"
+          className="text-3xl font-extrabold text-white"
+        >
           QuickMealz
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex space-x-8">
-          <a href="#home" className="text-white hover:text-teal-200 transition-all duration-300">Home</a>
-          <a href="#about" className="text-white hover:text-teal-200 transition-all duration-300">About Us</a>
-          <a href="#products" className="text-white hover:text-teal-200 transition-all duration-300">Our Products</a>
-          <a href="#contact" className="text-white hover:text-teal-200 transition-all duration-300">Contact</a>
+        <div className="hidden md:flex space-x-6">
+          {['Home', 'About Us', 'Our Products', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase().replace(' ', '')}`} // Linking to sections
+              className="text-lightblue-200 hover:text-white transition-colors duration-200 ease-in-out font-medium"
+            >
+              {item}
+            </a>
+          ))}
         </div>
 
         {/* Mobile Menu Icon */}
-        <button onClick={toggleMenu} className="md:hidden text-white focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-lightblue-200 focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden mt-2 bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 p-4 rounded-lg shadow-lg">
-          <a href="#home" className="block text-white py-2 px-4 hover:bg-blue-500 rounded" onClick={() => setIsOpen(false)}>Home</a>
-          <a href="#about" className="block text-white py-2 px-4 hover:bg-blue-500 rounded" onClick={() => setIsOpen(false)}>About Us</a>
-          <a href="#products" className="block text-white py-2 px-4 hover:bg-blue-500 rounded" onClick={() => setIsOpen(false)}>Our Products</a>
-          <a href="#contact" className="block text-white py-2 px-4 hover:bg-blue-500 rounded" onClick={() => setIsOpen(false)}>Contact</a>
+        <div className="md:hidden mt-2 bg-gradient-to-r from-indigo-900 via-navy-800 to-sky-700 p-4 rounded-lg shadow-lg">
+          {['Home', 'About Us', 'Our Products', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase().replace(' ', '')}`} // Linking to sections
+              className="block text-lightblue-200 py-2 px-4 hover:bg-lightblue-600 rounded transition duration-200"
+              onClick={() => setIsOpen(false)}
+            >
+              {item}
+            </a>
+          ))}
         </div>
       )}
     </nav>
